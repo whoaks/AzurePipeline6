@@ -15,7 +15,7 @@
             "value": "Standard"
         },
         "Storage_Account_Access_Tier": {
-            "value": "Hot"
+            "value": "Cool"
         },
         "Storage_Account_Blob_Access": {
             "value": true
