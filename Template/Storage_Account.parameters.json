@@ -34,10 +34,10 @@
             }
         },
         "Storage_Container_Name": {
-            "value": ["con-1"]
+            "value": ["con-1", "con-2"]
         },
         "Storage_Container_Access": {
-            "value": ["Container"]
+            "value": ["Container", "Blob"]
         }
     }
 }
