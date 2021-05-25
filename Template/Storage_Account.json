@@ -74,6 +74,20 @@
                 "count": "[length(parameters('Storage_Container_Name'))]",
                 "mode" : "Serial"
             }
+        },
+        {
+            "name"      : "LT-Storage-Container",
+            "type"      : "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'LT-Storage-Account')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "artifacts/Storage_Container.json"
+                }
+            }
         }
     ]
 }

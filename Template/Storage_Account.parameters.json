@@ -16,7 +16,8 @@
         },
         "Storage_Account_Access_Tier": {
             "value": "Hot"
-        },"Storage_Account_Blob_Access": {
+        },
+        "Storage_Account_Blob_Access": {
             "value": true
         },
         "Storage_Account_HNS": {
@@ -34,10 +35,10 @@
             }
         },
         "Storage_Container_Name": {
-            "value": ["con-1", "con-2"]
+            "value": ["con-1"]
         },
         "Storage_Container_Access": {
-            "value": ["Container", "Blob"]
+            "value": ["Container"]
         }
     }
 }

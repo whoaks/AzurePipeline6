@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Storage_Container_Name": {
+            "type"        : "array",
+            "defaultValue": ["con-1", "con-2", "con-3"]
+        },
+        "Storage_Container_Access": {
+            "type"        : "array",
+            "defaultValue": ["Container", "Container", "Blob"]
+        },
+        "Storage_Account_Name": {
+            "type"        : "string",
+            "defaultValue": "staccount7384"
+        }
+    },
+    "resources": [
+        {
+            "name"      : "[concat(parameters('Storage_Account_Name') , '/default/', parameters('Storage_Container_Name')[copyIndex('ContainerCopy')])]",
+            "type"      : "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "properties": {
+                "publicAccess": "[parameters('Storage_Container_Access')[copyIndex('ContainerCopy')]]"
+            },
+            "copy": {
+                "name" : "ContainerCopy",
+                "count": "[length(parameters('Storage_Container_Name'))]",
+                "mode" : "Serial"
+            }
+        }
+    ]
+}
