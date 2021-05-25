@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Storage_Account_Name": {
+            "value": "staccount7384"
+        },
+        "Storage_Account_Kind": {
+            "value": "StorageV2"
+        },
+        "Storage_Account_SKU_Name": {
+            "value": "Standard_ZRS"
+        },
+        "Storage_Account_SKU_Tier": {
+            "value": "Standard"
+        },
+        "Storage_Account_Access_Tier": {
+            "value": "Hot"
+        },"Storage_Account_Blob_Access": {
+            "value": true
+        },
+        "Storage_Account_HNS": {
+            "value": false
+        },
+        "Storage_Account_TLS_Version": {
+            "value": "TLS1_2"
+        },
+        "Storage_Account_Https_Traffic": {
+            "value": true
+        },
+        "Storage_Account_Tags": {
+            "value": {
+                "Env": "Testing"
+            }
+        },
+        "Storage_Container_Name": {
+            "value": ["con-1"]
+        },
+        "Storage_Container_Access": {
+            "value": ["Container"]
+        }
+    }
+}

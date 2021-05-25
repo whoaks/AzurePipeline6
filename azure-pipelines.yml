@@ -20,5 +20,6 @@ steps:
     location                      : 'East US'
     templateLocation              : 'URL of the file'
     csmFileLink                   : 'https://raw.githubusercontent.com/whoaks/AzurePipeline6/main/Template/SA.json'
+    csmParametersFileLink         :
     deploymentMode                : 'Incremental'
     deploymentName                : 'deployment'

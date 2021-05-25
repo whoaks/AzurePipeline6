@@ -3,58 +3,42 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "Storage_Account_Name": {
-            "type": "string",
-            "defaultValue": "staccount7384"
+            "type": "string"
         },
         "Storage_Account_Kind": {
-            "type": "string",
-            "defaultValue": "StorageV2"
+            "type": "string"
         },
         "Storage_Account_SKU_Name": {
-            "type": "string",
-            "defaultValue": "Standard_ZRS"
+            "type": "string"
         },
         "Storage_Account_SKU_Tier": {
-            "type": "string",
-            "defaultValue": "Standard"
+            "type": "string"
         },
         "Storage_Account_Access_Tier": {
-            "type": "string",
-            "defaultValue": "Cool"
+            "type": "string"
         },
         "Storage_Account_Blob_Access": {
-            "type": "bool",
-            "defaultValue": true
+            "type": "bool"
         },
         "Storage_Account_HNS": {
-            "type": "bool",
-            "defaultValue": false
+            "type": "bool"
         },
         "Storage_Account_TLS_Version": {
-            "type": "string",
-            "defaultValue": "TLS1_2"
+            "type": "string"
         },
         "Storage_Account_Https_Traffic": {
-            "type": "bool",
-            "defaultValue": true
+            "type": "bool"
         },
         "Storage_Account_Tags": {
-            "type": "object",
-            "defaultValue": {
-                "Env": "Testing"
-            }
+            "type": "object"
         },
         "Storage_Container_Name": {
-            "type": "array",
-            "defaultValue": ["con-1"]
+            "type": "array"
         },
         "Storage_Container_Access": {
-            "type": "array",
-            "defaultValue": ["Container"]
+            "type": "array"
         }
     },
-    "functions": [],
-    "variables": {},
     "resources": [
         {
             "name"      : "[parameters('Storage_Account_Name')]",
@@ -79,7 +63,7 @@
             "name"      : "[concat(parameters('Storage_Account_Name') , '/default/', parameters('Storage_Container_Name')[copyIndex('ContainerCopy')])]",
             "type"      : "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2019-06-01",
-            "dependsOn": [
+            "dependsOn" : [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('Storage_Account_Name'))]"
             ],
             "properties": {
@@ -91,6 +75,5 @@
                 "mode" : "Serial"
             }
         }
-    ],
-    "outputs": {}
+    ]
 }
