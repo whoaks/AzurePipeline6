@@ -19,7 +19,7 @@ steps:
     resourceGroupName             : 'Aks-RG'
     location                      : 'East US'
     templateLocation              : 'URL of the file'
-    csmFileLink                   : 'https://raw.githubusercontent.com/whoaks/AzurePipeline6/main/Template/SA.json'
-    csmParametersFileLink         :
+    csmFileLink                   : 'https://raw.githubusercontent.com/whoaks/AzurePipeline6/main/Template/Storage_Account.json'
+    csmParametersFileLink         : 'https://raw.githubusercontent.com/whoaks/AzurePipeline6/main/Template/Storage_Account.parameters.json'
     deploymentMode                : 'Incremental'
     deploymentName                : 'deployment'
