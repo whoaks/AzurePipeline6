@@ -20,7 +20,7 @@
         },
         "Storage_Account_Access_Tier": {
             "type": "string",
-            "defaultValue": "Hot"
+            "defaultValue": "Cool"
         },
         "Storage_Account_Blob_Access": {
             "type": "bool",
