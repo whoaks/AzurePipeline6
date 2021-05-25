@@ -1,0 +1,96 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Storage_Account_Name": {
+            "type": "string",
+            "defaultValue": "staccount7384"
+        },
+        "Storage_Account_Kind": {
+            "type": "string",
+            "defaultValue": "StorageV2"
+        },
+        "Storage_Account_SKU_Name": {
+            "type": "string",
+            "defaultValue": "Standard_ZRS"
+        },
+        "Storage_Account_SKU_Tier": {
+            "type": "string",
+            "defaultValue": "Standard"
+        },
+        "Storage_Account_Access_Tier": {
+            "type": "string",
+            "defaultValue": "Hot"
+        },
+        "Storage_Account_Blob_Access": {
+            "type": "bool",
+            "defaultValue": true
+        },
+        "Storage_Account_HNS": {
+            "type": "bool",
+            "defaultValue": false
+        },
+        "Storage_Account_TLS_Version": {
+            "type": "string",
+            "defaultValue": "TLS1_2"
+        },
+        "Storage_Account_Https_Traffic": {
+            "type": "bool",
+            "defaultValue": true
+        },
+        "Storage_Account_Tags": {
+            "type": "object",
+            "defaultValue": {
+                "Env": "Testing"
+            }
+        },
+        "Storage_Container_Name": {
+            "type": "array",
+            "defaultValue": ["con-1"]
+        },
+        "Storage_Container_Access": {
+            "type": "array",
+            "defaultValue": ["Container"]
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name"      : "[parameters('Storage_Account_Name')]",
+            "type"      : "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "location"  : "[resourceGroup().location]",
+            "kind"      : "[parameters('Storage_Account_Kind')]",
+            "sku": {
+                "name": "[parameters('Storage_Account_SKU_Name')]",
+                "tier": "[parameters('Storage_Account_SKU_Tier')]"
+            },
+            "properties": {
+                "accessTier"              : "[parameters('Storage_Account_Access_Tier')]",
+                "allowBlobPublicAccess"   : "[parameters('Storage_Account_Blob_Access')]",
+                "isHnsEnabled"            : "[parameters('Storage_Account_HNS')]",
+                "minimumTlsVersion"       : "[parameters('Storage_Account_TLS_Version')]",
+                "supportsHttpsTrafficOnly": "[parameters('Storage_Account_Https_Traffic')]"
+            },
+            "tags": "[parameters('Storage_Account_Tags')]"
+        },
+        {
+            "name"      : "[concat(parameters('Storage_Account_Name') , '/default/', parameters('Storage_Container_Name')[copyIndex('ContainerCopy')])]",
+            "type"      : "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('Storage_Account_Name'))]"
+            ],
+            "properties": {
+                "publicAccess": "[parameters('Storage_Container_Access')[copyIndex('ContainerCopy')]]"
+            },
+            "copy": {
+                "name" : "ContainerCopy",
+                "count": "[length(parameters('Storage_Container_Name'))]",
+                "mode" : "Serial"
+            }
+        }
+    ],
+    "outputs": {}
+}
